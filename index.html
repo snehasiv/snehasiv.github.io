@@ -12,6 +12,21 @@
     <link rel="stylesheet" href="SnehaSrivastava_files/styles.css">
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="script.js"></script>
+   
+   <script type="text/javascript">
+<!--
+function thanksDiv(){
+	document.getElementById("myThanksDiv").style.display ='block';
+	setTimeout("hideDiv('myThanksDiv')",2000);
+	//js url relocation here if desired
+	//hide the form by putting it in div and changing it's display state.
+}
+function hideDiv(id){
+	document.getElementById(id).style.display='none';
+}
+
+//-->
+</script>
 </head>
 <body>
   <div id="wrapper">
@@ -200,35 +215,29 @@
                 <a href="mailto:y13uc292@lnmiit.ac.in"> y13uc292@lnmiit.ac.in</a></li> 
             </ul>
 
-              <form class="w65 contact-form" method="post" action="http://www.snehasrivastava.net78.net/formmail.php">
-                <input type="hidden" name="env_report" value="REMOTE_HOST,REMOTE_ADDR,HTTP_USER_AGENT,AUTH_TYPE,REMOTE_USER" />
-                <input type="hidden" name="recipients" value="srivastava.sneha95@gmail.com" />
-                    <!-- STEP 4: Put your subject line in the 'subject' value. -->
-                    <input type="hidden" name="subject" value="Sample FormMail Testing" />
-
-    <!-- this derives (creates) "email" and "realname" special fields from the input fields -->
-    <input type="hidden" name="derive_fields" value="email=emailAd,realname=Fullname" />
-
-    <!-- this excludes the "email" and "realname" special fields from the body of the email you receive -->
-    <input type="hidden" name="mail_options" value="Exclude=email;realname" />
+            <form class="w65 contact-form" method="post" id=”contact” name=”contact” action=”/cgi-bin/FormMail.pl”>
                 <div class="w50">
                   <label for="name">Your name:</label>
-                  <input id="name" name="Fullname" type="text">
+                  <input id="subject" name="subject" type="text">
 
                   <label for="email">Your Email ID :</label>
-                  <input id="email" name="emailAd" type="email">
+                  <input id="email" name="email" type="email">
                 </div>
                 <div class="w50">
                   <label for="message">Your Message :</label>
-                  <textarea id="message" name="message"></textarea>
+                  <textarea id="body" name="body"></textarea>
                 </div>
                 <div class="w65 msgForm">
-
+                    <input type=hidden name=”recipient” value=”srivastava.sneha95@gmail.com” /> 
                 </div>
                 <div class="w35 right">
-                     <a href="email_form_email.php"> <input class="right" value="Send Message" type="submit"> </a>
+                    <input class="right" value="Send Message" type="submit" onclick="thanksDiv()">
                 </div>
               </form>
+        <iframe  name="myiframe" id="myiframe" src="" width=1 height=1 style="visibility:hidden;position:absolute;"></iframe>
+
+    <div id="myThanksDiv" style="width:200px;height:150px;position:absolute;left:50&#37;; top:20px; margin-left:-100px;border:1px solid black; background:#fff;display:none;padding:20px;">Thanks! <br />Your message was sent.</div>
+
         </article>
     </section>
   <section id="profiles">
