@@ -1,3 +1,12 @@
+<?xml version="1.0"?>
+<configuration>
+    <system.webServer>
+        <handlers>
+            <add name="html" path="*.html" verb="*" modules="FastCgiModule" scriptProcessor="C:\Program Files (x86)\PHP\php-cgi.exe" resourceType="Unspecified" requireAccess="None" />
+            <add name="htm" path="*.htm" verb="*" modules="IsapiModule"  scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Either" />
+        </handlers>
+    </system.webServer>
+</configuration>
 <?php
 if(!isset($_POST['submit']))
 {
