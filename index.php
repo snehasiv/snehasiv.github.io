@@ -214,18 +214,23 @@ function hideDiv(id){
                 <li><span>Mail</span>  <a href="mailto:srivastava.sneha95@gmail.com"> srivastava.sneha95@gmail.com</a><br>
                 <a href="mailto:y13uc292@lnmiit.ac.in"> y13uc292@lnmiit.ac.in</a></li> 
             </ul>
-
-            <form class="w65 contact-form" method="post" id=”contact” name=”contact” action=”FormMail.pl”>
+	<?php
+		$action=$_REQUEST['action'];
+		if ($action=="")    /* display the contact form */
+    		{
+    		?> 
+            <form class="w65 contact-form" method="post" id=”contact” name=”contact”  action="" enctype="multipart/form-data">
+    		<input type="hidden" name="action" value="submit"> 
                 <div class="w50">
                   <label for="name">Your name:</label>
-                  <input id="subject" name="subject" type="text">
+                  <input id="name" name="name" type="text">
 
                   <label for="email">Your Email ID :</label>
                   <input id="email" name="email" type="email">
                 </div>
                 <div class="w50">
                   <label for="message">Your Message :</label>
-                  <textarea id="body" name="body"></textarea>
+                  <textarea id="message" name="message"></textarea>
                 </div>
                 <div class="w65 msgForm">
                     <input type=hidden name=”recipient” value=”srivastava.sneha95@gmail.com” /> 
@@ -234,6 +239,25 @@ function hideDiv(id){
                     <input class="right" value="Send Message" type="submit" onclick="thanksDiv()">
                 </div>
               </form>
+             <?php
+    } 
+else                /* send the submitted data */
+    {
+    $name=$_REQUEST['name'];
+    $email=$_REQUEST['email'];
+    $message=$_REQUEST['message'];
+    if (($name=="")||($email=="")||($message==""))
+        {
+        echo "All fields are required, please fill <a href=\"\">the form</a> again.";
+        }
+    else{        
+        $from="From: $name<$email>\r\nReturn-path: $email";
+        $subject="Message sent using your contact form";
+        mail("srivastava.sneha95@gmail.com", $subject, $message, $from);
+        echo "Email sent!";
+        }
+    }  
+?> 
         <iframe  name="myiframe" id="myiframe" src="" width=1 height=1 style="visibility:hidden;position:absolute;"></iframe>
 
     <div id="myThanksDiv" style="width:200px;height:150px;position:absolute;left:50&#37;; top:20px; margin-left:-100px;border:1px solid black; background:#fff;display:none;padding:20px;">Thanks! <br />Your message was sent.</div>
